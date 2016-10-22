@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-    before_action :authenticate_user!, except: [:index,:show]
-    before_action :find_user,except: [:index,:show]
+    before_action :authenticate_user!, except: [:index,:show,:featured,:popular]
+    before_action :find_user,except: [:index,:show,:featured,:popular]
     before_action :find_post,except: [:index,:new,:create,:featured,:popular]
     def index
         @posts = Post.all

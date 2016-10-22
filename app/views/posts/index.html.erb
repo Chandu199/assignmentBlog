@@ -1,11 +1,13 @@
 <div class="jumbotron">
 <div class="form-group">
+  <ul class="nav nav-pills">
 <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
 <%= submit_tag "Search",class:"btn btn-primary" %>
 <% end %>
-<%=link_to 'featured',featured_path, class:"btn btn-primary" %>
-<%=link_to 'Popular',popular_path, class:"btn btn-primary" %>
+<li><%=link_to 'featured',featured_path, class:"btn btn-primary" %></li>
+<li><%=link_to 'Popular',popular_path, class:"btn btn-primary" %></li>
+</ul>
 </div>
 <div class="container">
   <% @posts.each do |post| %>
