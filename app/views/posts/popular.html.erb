@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="well">
+<%@posts.each do |post| %>
+    <h3><%= link_to post.title,post %></h3>
+    <p><%= post.description %></p></br>
+    </span><%= time_ago_in_words(post.created_at) %><span>
+    <i class="glyphicon glyphicon-circle-arrow-up"><%=post.thumbs_up_total %></i>
+    <i class="glyphicon glyphicon-circle-arrow-down"><%=post.thumbs_down_total %></i>
+<%end%>
+</div>
+<%=link_to 'Back',posts_path,class:"btn btn-default"%>
+</div>

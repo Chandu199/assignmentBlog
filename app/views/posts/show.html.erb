@@ -1,0 +1,31 @@
+<div class="jumbotron">
+<div class="container">
+<h2><%=@post.title %></h2>
+<p><%=@post.description%></p>
+<span>Created:<%=time_ago_in_words(@post.created_at) %></span></br>
+<span>User Mail:<%=@post.user.email%></span></br>
+
+    <%= link_to like_post_path(@post,like:true),method: :post do %>
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i><%=@post.thumbs_up_total %>&nbsp 
+                <%end%>&nbsp&nbsp&nbsp&nbsp
+
+                <%= link_to like_post_path(@post,like:false),method: :post do %>
+                    <i class="glyphicon glyphicon-circle-arrow-down"></i> &nbsp <%=@post.thumbs_down_total %>
+               <%end%>
+</div>
+</div>
+<div class="container">
+<%= render @post.comments%>
+<%= render('comments/form') %>
+</div>
+<div class="container">
+<% if @post.user_id== current_user.id%>
+<%= link_to 'Edit',edit_post_path,class:"btn btn-primary" %>
+<%end %>
+
+<%if current_user.admin?%>
+<%= link_to 'Delete',post_path(@post), method: :delete,data: {confirm:"Are you sure"},class:"btn btn-danger" %>
+<%end%>
+
+<%=link_to 'Back', posts_path ,class:"btn btn-default"%>
+</div>

@@ -1,0 +1,32 @@
+<div class="row">
+<div class="well col-md-8 col-md-offset-2">
+<%= form_for(@post, html: { mulitpart: true})  do|f| %>
+    <% if @post.errors.any? %>
+        <div id="errors">
+            <h2><%= pluralize(@post.errors.count,"error") %> Stopped this post from saving</h2>
+            <ul>
+                <% @post.errors.full_messages.each do |msg| %>
+                    <li><%=msg%></li>
+                <%end %>
+            </ul>
+        </div>
+    <%end %>
+    
+<div class="form-group">
+    <%=f.label :title,class:"label label-default"%>
+    <%=f.text_field :title ,class:"form-control"%>
+</div>
+<div class="form-group">
+    <%=f.label :description,class:"label label-default" %>
+    <%=f.text_area :description,class:"form-control" %>
+</div>
+<% if current_user.admin?%>
+<div class="form-group">
+    <%=f.label :featured, class:"label label-deafult"%>
+    <%=f.check_box :featured %>
+</div>
+<%end%>
+     <%= f.submit 'Write',class:'btn btn-success'%> 
+<%end%>
+</div>
+</div>
